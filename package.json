@@ -1,0 +1,131 @@
+{
+  "name": "vscode-open-agent",
+  "displayName": "Open Agent",
+  "description": "AI coding agent powered by Claude — read, write, run, and commit code via chat",
+  "version": "0.2.3",
+  "publisher": "zhenghuanhan",
+  "engines": { "vscode": "^1.85.0" },
+  "categories": ["AI", "Programming Languages", "Other"],
+  "activationEvents": ["*"],
+  "main": "./out/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "claudeAgent",
+          "title": "Claude Agent",
+          "icon": "media/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "claudeAgent": [
+        {
+          "type": "webview",
+          "id": "claudeAgent.chatView",
+          "name": "Chat"
+        }
+      ]
+    },
+    "commands": [
+      { "command": "claudeAgent.openChat", "title": "Claude Agent: Open Chat" },
+      { "command": "claudeAgent.runPrompt", "title": "Claude Agent: Run Prompt..." },
+      { "command": "claudeAgent.explainSelection", "title": "Claude Agent: Explain Selection" },
+      { "command": "claudeAgent.fixSelection", "title": "Claude Agent: Fix Selection" },
+      { "command": "claudeAgent.editWithInstruction", "title": "Claude Agent: Edit File with Instruction..." },
+      { "command": "claudeAgent.askAboutSymbol", "title": "Claude Agent: Ask About Symbol" },
+      { "command": "claudeAgent.explainSymbol", "title": "Claude Agent: Explain Symbol" },
+      { "command": "claudeAgent.fixSymbol", "title": "Claude Agent: Fix Symbol" },
+      { "command": "claudeAgent.askAboutSelection", "title": "Claude Agent: Ask About Selection" },
+      { "command": "claudeAgent.refactorSelection", "title": "Claude Agent: Refactor Selection" },
+      { "command": "claudeAgent.writeTestsForSelection", "title": "Claude Agent: Write Tests for Selection" }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "claudeAgent.explainSelection",
+          "when": "editorHasSelection",
+          "group": "claudeAgent"
+        },
+        {
+          "command": "claudeAgent.fixSelection",
+          "when": "editorHasSelection",
+          "group": "claudeAgent"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Claude Agent",
+      "properties": {
+        "claudeAgent.provider": {
+          "type": "string",
+          "default": "anthropic",
+          "enum": ["anthropic", "openai"],
+          "enumDescriptions": [
+            "Use Anthropic Claude models",
+            "Use OpenAI GPT models"
+          ],
+          "description": "AI provider to use"
+        },
+        "claudeAgent.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Anthropic API Key (or set ANTHROPIC_API_KEY env var)"
+        },
+        "claudeAgent.openaiApiKey": {
+          "type": "string",
+          "default": "",
+          "description": "OpenAI API Key (or set OPENAI_API_KEY env var)"
+        },
+        "claudeAgent.baseUrl": {
+          "type": "string",
+          "default": "",
+          "description": "自定义 API 端点（兼容 OpenAI 协议的第三方服务，如阿里云百炼）。例：https://dashscope.aliyuncs.com/compatible-mode/v1"
+        },
+        "claudeAgent.model": {
+          "type": "string",
+          "default": "claude-opus-4-5",
+          "description": "Model name (e.g. claude-opus-4-5, gpt-4o)"
+        },
+        "claudeAgent.maxTokens": {
+          "type": "number",
+          "default": 8192,
+          "description": "Max tokens per response"
+        },
+        "claudeAgent.autoApproveTools": {
+          "type": "boolean",
+          "default": false,
+          "description": "Auto-approve tool calls without confirmation prompts"
+        },
+        "claudeAgent.enableCodeLens": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show ✨ Ask Claude / 📖 Explain / 🔧 Fix buttons above functions and classes"
+        },
+        "claudeAgent.autoInjectCurrentFile": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically inject the currently open file as context when sending a message"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext ts"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.24.0",
+    "openai": "^4.47.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "typescript": "^5.3.0"
+  }
+}
