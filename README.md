@@ -14,9 +14,9 @@
 - **流式响应** — 实时 Token 流式输出
 
 
-![配置页面](https://raw.githubusercontent.com/AaronharveyHan/VSCode_Open_Agent/tree/main/media/配置页面.jpg)
-![当前文件自动注入](https://raw.githubusercontent.com/AaronharveyHan/VSCode_Open_Agent/tree/main/media/当前文件自动注入.jpg)
-![特性](https://raw.githubusercontent.com/AaronharveyHan/VSCode_Open_Agent/tree/main/media/特性.jpg)
+![配置页面](https://raw.githubusercontent.com/AaronharveyHan/VSCode_Open_Agent/main/media/配置页面.jpg)
+![当前文件自动注入](https://raw.githubusercontent.com/AaronharveyHan/VSCode_Open_Agent/main/media/当前文件自动注入.jpg)
+![特性](https://raw.githubusercontent.com/AaronharveyHan/VSCode_Open_Agent/main/media/特性.jpg)
 
 ## 安装与设置
 
